@@ -1,6 +1,8 @@
 cmake_minimum_required (VERSION 3.1)
 project (onboardproject)
 
+find_package(Threads REQUIRED)
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fPIC -g")
 if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS 4.8)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpermissive -D_GLIBCXX_USE_SCHED_YIELD -D_GLIBCXX_USE_NANOSLEEP")
