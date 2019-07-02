@@ -86,19 +86,25 @@ void Onboard::dataReceiveThread()
  dataThread = std::thread([this] {
 
   // Reads data from a Bluetooth or WiFi AP network interface.
-  // This function spans a thread to generate a non-blocking read.
+  // This function spans a thread to execute a non-blocking read.
+  // Mechanism for receiving and reading needs to be completed by you.
+  //
+  // The received data may contain the WiFi-credential, user Id and keys.
+  // The key-value string needs to be separated by a newline('\n')
+  // if it has multiple entity on it.
+  // 
   //
   // For example:
-  // if data is received on WiFi-AP
+  // if data is received on WiFi-AP 
   // then:
   //   std::string interface = "WiFi-AP";
-  //   std::string recvData = "Received this data!";
+  //   std::string recvData = "SSID:wifi_ssid"+"\n"+"PASS:wifi_password"+"\n"+"UID:userID"+"\n"+"KEY:deviceLeaseToken";
   //   int size = recvData.length();
   //   this->handler(interface, recvData, size);
   // else if data is received on Bluetooth
   // then,
   //   std::string interface = "BLE";
-  //   std::string recvData = "Received this data!";
+  //   std::string recvData = "SSID:wifi_ssid"+"\n"+"PASS:wifi_password"+"\n"+"UID:userID"+"\n"+"KEY:deviceLeaseToken";
   //   int size = recvData.length();
   //   this->handler(interface, recvData, size);
  });
