@@ -19,7 +19,7 @@ Onboard::~Onboard()
 
 void Onboard::getAvailableInterfaces(std::vector<std::string> &interfaceList)
 {
-  // Fill out the interfaceList vector with all available Bluetooth and WiFi AP network interfaces.
+  // Complete the interfaceList vector with all available Bluetooth and WiFi AP network interfaces.
   // For example: 
   // interfaceList.push_back("BLE");
   // interfaceList.push_back("WiFi-AP");
@@ -72,7 +72,7 @@ void Onboard::setDataReceiveCallback(DataReceiveHandler handler)
 {
   // Returns data received from a connected Smarter Camera App via a Bluetooth or WiFi AP network interface.
   // This function must be non-blocking, so we created dataReceiveThread(),
-  // which must call the interface library's Read() API.
+  // which must call your interface library's Read() API.
 
   this->handler = handler; 
   if(dataThreadRunning == false) {
@@ -87,19 +87,18 @@ void Onboard::dataReceiveThread()
 
   // Reads data from a Bluetooth or WiFi AP network interface.
   // This function spans a thread to generate a non-blocking read.
-  // Please complete the WiFi-AP or Bluetooth reading.
   //
   // For example:
   // if data is received on WiFi-AP
   // then:
   //   std::string interface = "WiFi-AP";
-  //   std::string recvData = "received data!";
+  //   std::string recvData = "Received this data!";
   //   int size = recvData.length();
   //   this->handler(interface, recvData, size);
   // else if data is received on Bluetooth
   // then,
   //   std::string interface = "BLE";
-  //   std::string recvData = "received data!";
+  //   std::string recvData = "Received this data!";
   //   int size = recvData.length();
   //   this->handler(interface, recvData, size);
  });
