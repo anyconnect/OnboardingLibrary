@@ -104,7 +104,7 @@ void Onboard::dataReceiveThread()
   // else if data is received on Bluetooth
   // then,
   //   std::string interface = "BLE";
-  //   std::string recvData = "SSID:wifi_ssid"+"\n"+"PASS:wifi_password"+"\n"+"UID:userID"+"\n"+"KEY:deviceLeaseToken";
+  //   std::string recvData = "SSID=wifi_ssid"+"\n"+"PASS=wifi_password"+"\n"+"UID=userID"+"\n"+"KEY=deviceLeaseToken";
   //   int size = recvData.length();
   //   this->handler(interface, recvData, size);
  });
