@@ -11,11 +11,11 @@ Test::Test()
 
 }
 
-void Test::loadLib(std::string name) 
+void Test::loadLib(std::string name)
 {
   instance = NULL;
   handle = dlopen(name.c_str(), RTLD_LAZY);
-	 
+
   if (!handle) {
     printf("%s\n", dlerror());
     return;
@@ -33,12 +33,12 @@ void Test::loadLib(std::string name)
   instance = create();
 }
 
-bool Test::isLoaded() 
+bool Test::isLoaded()
 {
-  return instance != NULL; 
+  return instance != NULL;
 }
 
-void Test::setDataCallback() 
+void Test::setDataCallback()
 {
   instance->setDataReceiveCallback([this](std::string interfaceId, std::string data, int len) {
     std::cout<<"Received: "<<interfaceId<<" data: "<<data<<std::endl;
@@ -62,8 +62,8 @@ int main()
   }
   else {
     printf("Your AnyConnect Onboarding Library is not loaded!\n");
-  }  
-  pTest->setDataCallback(); 
+  }
+  pTest->setDataCallback();
   while(1) {
     sleep(3);
   }

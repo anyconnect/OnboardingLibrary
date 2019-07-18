@@ -15,6 +15,6 @@ public:
 void loadLib(std::string name);
 bool isLoaded();
 void setDataCallback();
- 
+
 };
 

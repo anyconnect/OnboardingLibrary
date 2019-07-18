@@ -20,50 +20,50 @@ Onboard::~Onboard()
 void Onboard::getAvailableInterfaces(std::vector<std::string> &interfaceList)
 {
   // Complete the interfaceList vector with all available Bluetooth and WiFi AP network interfaces.
-  // For example: 
-  // interfaceList.push_back("BLE");
-  // interfaceList.push_back("WiFi-AP");
-  // interfaceList.push_back("WiFi-Client");
+  // For example:
+  // interfaceList.push_back(INTERAFCE_ID_BLE);
+  // interfaceList.push_back(INTERAFCE_ID_WIFI_AP);
+  // interfaceList.push_back(INTERAFCE_ID_WIFI_CLIENT);
 }
 
 void Onboard::enableInterface(std::string interfaceId)
 {
-  // Enables a Bluetooth or WiFi AP network interface. 
+  // Enables a Bluetooth or WiFi AP network interface.
   // For example:
-  // if(interfaceId == "WiFi-AP") {
-  //   enable WiFi AP mode. 
+  // if(interfaceId == INTERAFCE_ID_WIFI_AP) {
+  //   enable WiFi AP mode.
   // }
-  // else if(interfaceId == "WiFi-Client") {
+  // else if(interfaceId == INTERAFCE_ID_WIFI_CLIENT) {
   //  enable WiFi Client mode.
   // }
-  // else if(interfaceId == "BLE") {
+  // else if(interfaceId == INTERAFCE_ID_BLE) {
   //  enable Bluetooth mode.
-  // } 
+  // }
 }
 
 void Onboard::disableInterface(std::string interfaceId)
 {
   // Disables a Bluetooth or WiFi AP network interface.
   // For example:
-  // if(interfaceId == "WiFi-AP") {
-  //   disable WiFi AP mode. 
+  // if(interfaceId == INTERAFCE_ID_WIFI_AP) {
+  //   disable WiFi AP mode.
   // }
-  // else if(interfaceId == "WiFi-Client") {
+  // else if(interfaceId == INTERAFCE_ID_WIFI_CLIENT) {
   //  disable WiFi Client mode.
   // }
-  // else if(interfaceId == "BLE") {
+  // else if(interfaceId == INTERAFCE_ID_BLE) {
   //  disable Bluetooth mode.
-  // } 
+  // }
 }
 
 void Onboard::sendData(std::string interfaceId, std::string data, int length)
 {
   // Sends data to a connected Smarter Camera App using a Bluetooth or WiFi AP network interface.
   // For example:
-  // if(interfaceId == "WiFi-AP") {
+  // if(interfaceId == INTERAFCE_ID_WIFI_AP) {
   //  send data using WiFi AP interface
   // }
-  // else if(interfaceId == "BLE") {
+  // else if(interfaceId == INTERAFCE_ID_BLE) {
   //  send data using Bluetooth interface
   // }
 }
@@ -74,14 +74,14 @@ void Onboard::setDataReceiveCallback(DataReceiveHandler handler)
   // This function must be non-blocking, so we created dataReceiveThread(),
   // which must call your interface library's Read() API.
 
-  this->handler = handler; 
+  this->handler = handler;
   if(dataThreadRunning == false) {
     dataReceiveThread();
     dataThreadRunning = true;
   }
 }
 
-void Onboard::dataReceiveThread() 
+void Onboard::dataReceiveThread()
 {
  dataThread = std::thread([this] {
 
@@ -92,18 +92,18 @@ void Onboard::dataReceiveThread()
   // The received data may contain the WiFi-credential, user Id and keys.
   // The key-value string needs to be separated by a newline('\n')
   // if it has multiple entity on it.
-  // 
+  //
   //
   // For example:
-  // if data is received on WiFi-AP 
+  // if data is received on WiFi-AP
   // then:
-  //   std::string interface = "WiFi-AP";
+  //   std::string interface = INTERAFCE_ID_WIFI_AP;
   //   std::string recvData = "SSID=wifi_ssid"+"\n"+"PASS=wifi_password"+"\n"+"UID=userID"+"\n"+"KEY=deviceLeaseToken";
   //   int size = recvData.length();
   //   this->handler(interface, recvData, size);
   // else if data is received on Bluetooth
   // then,
-  //   std::string interface = "BLE";
+  //   std::string interface = INTERAFCE_ID_BLE;
   //   std::string recvData = "SSID=wifi_ssid"+"\n"+"PASS=wifi_password"+"\n"+"UID=userID"+"\n"+"KEY=deviceLeaseToken";
   //   int size = recvData.length();
   //   this->handler(interface, recvData, size);
@@ -115,8 +115,8 @@ WifiStatus Onboard::connecttoWifi(std::string wifiSecurity, std::string wifiSSID
   // Connects to a WiFi network in Client Mode using the SSID and password received from a connected Smarter Camera App.
   // Before connecting to a WiFi network in Client Mode, make sure to disable WiFI AP Mode.
   // For example:
-  // disableInterface("WiFi-AP");
-  // enableInterface("WiFi-Client");
+  // disableInterface(INTERAFCE_ID_WIFI_AP);
+  // enableInterface(INTERAFCE_ID_WIFI_CLIENT);
   // Connect to a WiFi network using the SSID, password and security mode.
 }
 
