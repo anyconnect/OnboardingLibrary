@@ -41,7 +41,7 @@ void Onboard::enableInterface(std::string interfaceId)
   //  enable Bluetooth mode.
   // }
   // else if(interfaceId == "Ethernet") {
-  //  nothing special, go for listening.
+  //  nothing special, begin listening.
   // }
   //
   // listen, connect and read/write.
@@ -61,7 +61,7 @@ void Onboard::disableInterface(std::string interfaceId)
   //  disable Bluetooth mode.
   // }
   // else if(interfaceId == "Ethernet") {
-  //  do anything specific for Ethernet.
+  // disable Ethernet mode.
   // }
   //
   // stop listening, close all connections.
