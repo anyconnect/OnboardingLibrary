@@ -1,7 +1,7 @@
 #ifndef _ONBOARD_SERVICE_H_
 #define _ONBOARD_SERVICE_H_
 
-// Onboard Service library header file.  
+// Onboard Service library header file.
 // The AnyConnect Smarter Camera Platform Libraries will call these APIs
 // to read and send data to and from Bluetooth or WiFi network interfaces.
 // These base class member functions are overridden by Onboard derived class.
@@ -22,9 +22,9 @@ namespace onboard {
 /// \param[out] receivedData - Data received on the interface.
 /// \param[out] length - Length of the received data.
 ///
-typedef std::function<void(const std::string &interfaceId, std::string &receivedData, int &length)> DataReceiveHandler;
+typedef std::function<void(const std::string interfaceId, std::string receivedData, int length)> DataReceiveHandler;
 
-/// 
+///
 /// Error types for WiFi configuration.
 ///
 enum WifiStatus {
@@ -39,7 +39,7 @@ public:
   OnboardService() {
   ;
   }
-  
+
   ///
   /// Returns all available Bluetooth, Ethernet or WiFi AP network interfaces used for onboarding.
   /// e.g., WiFi-AP, Wifi-Client, BLE, Ethernet
@@ -47,25 +47,25 @@ public:
   /// \param[out] interfaceList - List of available Bluetooth or WiFi AP network interfaces for onboarding.
   ///
   virtual void getAvailableInterfaces(std::vector<std::string> &interfaceList) = 0;
-  
+
   ///
   /// Enables a Bluetooth, Ethernet or WiFi AP network interface for onboarding.
   /// Upon getting invocation, camera should listen for connection on some IP address
-  /// and port and exchange data when peer is connected. 
+  /// and port and exchange data when peer is connected.
   ///
   /// \param[in] interfaceId - The identifier of the network interface.
   ///
-  virtual void enableInterface(std::string interfaceId) = 0;
-  
+  virtual void enableInterface(const std::string& interfaceId) = 0;
+
   ///
   /// Disable a Bluetooth or WiFi AP network interface,
-  /// generally after onboarding is complete. Camera should 
+  /// generally after onboarding is complete. Camera should
   /// stop listening at this point.
   ///
   /// \param[in] interfaceId - the identifier of the interface.
   ///
-  virtual void disableInterface(std::string interfaceId) = 0;
- 
+  virtual void disableInterface(const std::string& interfaceId) = 0;
+
   ///
   /// Set a callback for receiving data from a network interface.
   ///
@@ -75,22 +75,22 @@ public:
 
   ///
   /// Send data using a network interface.
-  /// 
+  ///
   /// \param[in] interfaceId - The ID of the network interface to be used.
   /// \param[in] data - Data be sent.
   /// \param[in] length - Length of the data.
-  /// 
-  virtual void sendData(std::string interfaceId, std::string data, int length) = 0;
- 
+  ///
+  virtual void sendData(const std::string& interfaceId, std::string data, const int length) = 0;
+
   ///
   /// Set the Wifi SSID and password and connect to a WiFi network.
-  /// 
+  ///
   /// \param[in] wifiSecurity - Security mechanism of the WiFi network, e.g., NONE, WPA/WPA2.
   /// \param[in] wifiSSID - SSID of the WiFi network received from your AnyConnect Smarter Camera App.
   /// \param[in] password - Password of the WiFi network received from your AnyConnect Smarter Camera App.
   /// \param[out] WifiStatus - Status of the WiFi connection.
-  /// 
-  virtual WifiStatus connecttoWifi(std::string wifiSecurity, std::string wifiSSID, std::string password) = 0;
+  ///
+  virtual WifiStatus connecttoWifi(const std::string& wifiSecurity, const std::string& wifiSSID, const std::string& password) = 0;
 };
 
 } //< onboard

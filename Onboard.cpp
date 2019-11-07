@@ -12,24 +12,24 @@ Onboard::Onboard()
 
 Onboard::~Onboard()
 {
-  dataThread.join();
   dataThreadRunning = false;
+  dataThread.join();
   // Write your de-initialization code.
 }
 
 void Onboard::getAvailableInterfaces(std::vector<std::string> &interfaceList)
 {
   // Complete the interfaceList vector with all available Bluetooth and WiFi AP network interfaces.
-  // For example: 
+  // For example:
   // interfaceList.push_back("BLE");
   // interfaceList.push_back("WiFi-AP");
   // interfaceList.push_back("WiFi-Client");
   // interfaceList.push_back("Ethernet");
 }
 
-void Onboard::enableInterface(std::string interfaceId)
+void Onboard::enableInterface(const std::string& interfaceId)
 {
-  // Enables a Bluetooth, Ethernet or WiFi AP network interface. 
+  // Enables a Bluetooth, Ethernet or WiFi AP network interface.
   // For example:
   // if(interfaceId == "WiFi-AP") {
   //   enable WiFi AP mode.
@@ -47,12 +47,12 @@ void Onboard::enableInterface(std::string interfaceId)
   // listen, connect and read/write.
 }
 
-void Onboard::disableInterface(std::string interfaceId)
+void Onboard::disableInterface(const std::string& interfaceId)
 {
   // Disables a Bluetooth or WiFi AP network interface.
   // For example:
   // if(interfaceId == "WiFi-AP") {
-  //   disable WiFi AP mode. 
+  //   disable WiFi AP mode.
   // }
   // else if(interfaceId == "WiFi-Client") {
   //  disable WiFi Client mode.
@@ -67,7 +67,7 @@ void Onboard::disableInterface(std::string interfaceId)
   // stop listening, close all connections.
 }
 
-void Onboard::sendData(std::string interfaceId, std::string data, int length)
+void Onboard::sendData(const std::string& interfaceId, std::string data, const int length)
 {
   // Sends data to a connected Smarter Camera App using a Bluetooth or WiFi AP network interface.
   // For example:
@@ -82,20 +82,20 @@ void Onboard::sendData(std::string interfaceId, std::string data, int length)
   // }
 }
 
-void Onboard::setDataReceiveCallback(DataReceiveHandler handler)
+void Onboard::setDataReceiveCallback(com::anyconnect::onboard::DataReceiveHandler handler)
 {
   // Returns data received from a connected Smarter Camera App via a Bluetooth, Ethernet or WiFi AP network interface.
   // This function must be non-blocking, so we created dataReceiveThread(),
   // which must call your interface library's Read() API.
 
-  this->handler = handler; 
+  this->handler = handler;
   if(dataThreadRunning == false) {
-    dataReceiveThread();
     dataThreadRunning = true;
+    dataReceiveThread();
   }
 }
 
-void Onboard::dataReceiveThread() 
+void Onboard::dataReceiveThread()
 {
  dataThread = std::thread([this] {
 
@@ -106,10 +106,10 @@ void Onboard::dataReceiveThread()
   // The received data may contain the WiFi-credential, user Id and keys.
   // The key-value string needs to be separated by a newline('\n')
   // if it has multiple entity on it.
-  // 
+  //
   //
   // For example:
-  // if data is received on WiFi-AP 
+  // if data is received on WiFi-AP
   // then:
   //   std::string interface = "WiFi-AP";
   //   std::string recvData = "SSID=wifi_ssid"+"\n"+"PASS=wifi_password"+"\n"+"UID=userID"+"\n"+"KEY=deviceLeaseToken";
@@ -130,7 +130,8 @@ void Onboard::dataReceiveThread()
  });
 }
 
-WifiStatus Onboard::connecttoWifi(std::string wifiSecurity, std::string wifiSSID, std::string password)
+com::anyconnect::onboard::WifiStatus
+Onboard::connecttoWifi(const std::string& wifiSecurity, const std::string& wifiSSID, const std::string& password)
 {
   // Connects to a WiFi network in Client Mode using the SSID and password received from a connected Smarter Camera App.
   // Before connecting to a WiFi network in Client Mode, make sure to disable WiFI AP Mode.
@@ -149,3 +150,4 @@ void destroy(Onboard* onboard) {
 	delete onboard;
 }
 }
+
