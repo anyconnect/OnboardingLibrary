@@ -24,21 +24,27 @@ void Onboard::getAvailableInterfaces(std::vector<std::string> &interfaceList)
   // interfaceList.push_back("BLE");
   // interfaceList.push_back("WiFi-AP");
   // interfaceList.push_back("WiFi-Client");
+  // interfaceList.push_back("Ethernet");
 }
 
 void Onboard::enableInterface(std::string interfaceId)
 {
-  // Enables a Bluetooth or WiFi AP network interface. 
+  // Enables a Bluetooth, Ethernet or WiFi AP network interface. 
   // For example:
   // if(interfaceId == "WiFi-AP") {
-  //   enable WiFi AP mode. 
+  //   enable WiFi AP mode.
   // }
   // else if(interfaceId == "WiFi-Client") {
   //  enable WiFi Client mode.
   // }
   // else if(interfaceId == "BLE") {
   //  enable Bluetooth mode.
-  // } 
+  // }
+  // else if(interfaceId == "Ethernet") {
+  //  nothing special, go for listening.
+  // }
+  //
+  // listen, connect and read/write.
 }
 
 void Onboard::disableInterface(std::string interfaceId)
@@ -53,7 +59,12 @@ void Onboard::disableInterface(std::string interfaceId)
   // }
   // else if(interfaceId == "BLE") {
   //  disable Bluetooth mode.
-  // } 
+  // }
+  // else if(interfaceId == "Ethernet") {
+  //  do anything specific for Ethernet.
+  // }
+  //
+  // stop listening, close all connections.
 }
 
 void Onboard::sendData(std::string interfaceId, std::string data, int length)
@@ -66,11 +77,14 @@ void Onboard::sendData(std::string interfaceId, std::string data, int length)
   // else if(interfaceId == "BLE") {
   //  send data using Bluetooth interface
   // }
+  // else if(interfaceId == "Ethernet") {
+  //  send data using Ethernet interface
+  // }
 }
 
 void Onboard::setDataReceiveCallback(DataReceiveHandler handler)
 {
-  // Returns data received from a connected Smarter Camera App via a Bluetooth or WiFi AP network interface.
+  // Returns data received from a connected Smarter Camera App via a Bluetooth, Ethernet or WiFi AP network interface.
   // This function must be non-blocking, so we created dataReceiveThread(),
   // which must call your interface library's Read() API.
 
@@ -85,7 +99,7 @@ void Onboard::dataReceiveThread()
 {
  dataThread = std::thread([this] {
 
-  // Reads data from a Bluetooth or WiFi AP network interface.
+  // Reads data from a Bluetooth, Ethernet or WiFi AP network interface.
   // This function spans a thread to execute a non-blocking read.
   // Mechanism for receiving and reading needs to be completed by you.
   //
@@ -104,6 +118,12 @@ void Onboard::dataReceiveThread()
   // else if data is received on Bluetooth
   // then,
   //   std::string interface = "BLE";
+  //   std::string recvData = "SSID=wifi_ssid"+"\n"+"PASS=wifi_password"+"\n"+"UID=userID"+"\n"+"KEY=deviceLeaseToken";
+  //   int size = recvData.length();
+  //   this->handler(interface, recvData, size);
+  // else if data is received on Ethernet
+  // then,
+  //   std::string interface = "Ethernet";
   //   std::string recvData = "SSID=wifi_ssid"+"\n"+"PASS=wifi_password"+"\n"+"UID=userID"+"\n"+"KEY=deviceLeaseToken";
   //   int size = recvData.length();
   //   this->handler(interface, recvData, size);
