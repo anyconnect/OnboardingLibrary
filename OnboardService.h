@@ -4,7 +4,8 @@
 // Onboard Service library header file.  
 // The AnyConnect Smarter Camera Platform Libraries will call these APIs
 // to read and send data to and from Bluetooth or WiFi network interfaces.
-// These base class member functions are overridden by Onboard derived class.
+// These base class member functions are overridden by Onboard derived class.
+
 #include <string>
 #include <vector>
 #include <functional>
@@ -40,15 +41,17 @@ public:
   }
   
   ///
-  /// Returns all available Bluetooth or WiFi AP network interfaces.
-  /// e.g., WiFi-AP, Wifi-Client, BLE
+  /// Returns all available Bluetooth, Ethernet or WiFi AP network interfaces used for onboarding.
+  /// e.g., WiFi-AP, Wifi-Client, BLE, Ethernet
   ///
   /// \param[out] interfaceList - List of available Bluetooth or WiFi AP network interfaces for onboarding.
   ///
   virtual void getAvailableInterfaces(std::vector<std::string> &interfaceList) = 0;
   
   ///
-  /// Enables a Bluetooth or WiFi AP network interface for onboarding.
+  /// Enables a Bluetooth, Ethernet or WiFi AP network interface for onboarding.
+  /// Upon getting invocation, camera should listen for connection on some IP address
+  /// and port and exchange data when peer is connected. 
   ///
   /// \param[in] interfaceId - The identifier of the network interface.
   ///
@@ -56,7 +59,8 @@ public:
   
   ///
   /// Disable a Bluetooth or WiFi AP network interface,
-  /// generally after onboarding is complete.
+  /// generally after onboarding is complete. Camera should 
+  /// stop listening at this point.
   ///
   /// \param[in] interfaceId - the identifier of the interface.
   ///
