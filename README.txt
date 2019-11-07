@@ -1,4 +1,4 @@
-The AnyConnect Onboarding Plugin Library enables camera onboarding, in conjunction with the AnyConnect Smarter Camera Platform, via Bluetooth or WiFi AP.  The steps to build and deploy your Onboarding Library are:
+The AnyConnect Onboarding Plugin Library enables camera onboarding, in conjunction with the AnyConnect Smarter Camera Platform, via Bluetooth, Ethernet, or WiFi AP.  The steps to build and deploy your Onboarding Library are:
 
 1. Complete the stub functions in libonboard.cpp.
 2. Compile your libonboard.so.
@@ -26,7 +26,7 @@ Software packages:
 - gcc/g++ version 7.x or higher
 
 Network features:
-- Bluetooth or WiFi AP Mode
+- Bluetooth, Ethernet, or WiFi AP Mode
 - WiFi Client Mode
 
 Bluetooth interfaces to programmatically:
