@@ -29,6 +29,7 @@ typedef std::function<void(const std::string interfaceId, std::string receivedDa
 ///
 enum WifiStatus {
   SUCCESS,
+  INVALID_INPUT,
   AUTH_FAIL,
   UNAVAILABLE,
   FAIL
