@@ -21,27 +21,27 @@ The AnyConnect Onboarding Plugin Library enables camera onboarding, in conjuncti
 
 # What’s Required
 
-Software packages:
+### Software packages:
 - Linux
 - dl library
 - pthreads library 
 - gcc/g++ version 7.x or higher
 
-Network features:
+### Network features:
 - Bluetooth, Ethernet, or WiFi AP Mode
 - WiFi Client Mode
 
-Bluetooth interfaces to programmatically:
+### Bluetooth interfaces to programmatically:
 - Enable and disable Bluetooth
 - Advertise Bluetooth
 - Read and write data
 
-WiFi AP mode interfaces to programmatically:
+### WiFi AP mode interfaces to programmatically:
 - Switch between WiFi AP and WiFi Client Modes
 - Act as a TCP server with a static IP address
 - Read and write data
 
-WiFi Client mode interfaces to programmatically:
+### WiFi Client mode interfaces to programmatically:
 - Switch between WiFi AP and WiFi Client Modes
 - Enable and disable WiFi Client Mode
 - Configure SSID and password
